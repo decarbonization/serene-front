@@ -17,8 +17,23 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export * from "./error";
-export * from "./fetch";
-export * from "./fulfill";
-export * from "./request";
-export * from "./authority";
+export class RESTError extends Error {
+    constructor(
+        public readonly status: number,
+        public readonly statusText: string,
+        message?: string
+    ) {
+        super(
+            message !== undefined
+                ? `${status} ${statusText}: ${message}`
+                : `${status} ${statusText}`
+        );
+    }
+}
+
+/**
+ * Encapsulates an error which occurred when working with an authority object.
+ */
+export class AuthorityError extends RESTError {
+
+}

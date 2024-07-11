@@ -17,8 +17,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export * from "./error";
-export * from "./fetch";
-export * from "./fulfill";
-export * from "./request";
-export * from "./authority";
+import { SereneAuthority } from "./authority";
+
+/**
+ * An event describing an operation which the serene-front
+ * library is about to or has undertaken.
+ */
+export type SereneLogEvent =
+    | { event: "willRefreshAuthority", authority: SereneAuthority, retry?: number }
+    | { event: "willAuthenticate", authority: SereneAuthority, fetchRequest: Request }
+    | { event: "willFetch", fetchRequest: Request }
+    | { event: "willParse", fetchResponse: Response };
+
+/**
+ * A function which records an operation which the serene-front
+ * library is about to or has undertaken.
+ */
+export type SereneLogger = (event: SereneLogEvent) => void;
+
+/**
+ * A logger which does nothing.
+ */
+export const noLogger: SereneLogger = (_event: SereneLogEvent) => { /* do nothing */ };

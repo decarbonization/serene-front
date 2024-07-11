@@ -17,8 +17,12 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export * from "./error";
-export * from "./fetch";
-export * from "./fulfill";
-export * from "./request";
-export * from "./authority";
+/**
+ * Prototype of a function which fetches a resource over the network.
+ */
+export type FetchFunction = typeof globalThis.fetch;
+
+/**
+ * The default function to use to fetch resources over the network.
+ */
+export const defaultFetch: FetchFunction = globalThis.fetch;

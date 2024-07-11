@@ -18,12 +18,13 @@
  */
 
 import { describe, expect, it } from "@jest/globals";
-import { meaningOfLife } from "../lib";
+import { RESTError } from "../lib";
 
-describe("serene-front module", () => {
-    describe("#meaningOfLife", () => {
-        it("should return the meaning of life", () => {
-            expect(meaningOfLife()).toStrictEqual(42);
+describe("error module", () => {
+    describe("#RESTError", () => {
+        it("should generate message", () => {
+            expect(new RESTError(404, "Not Found").message).toStrictEqual("404 Not Found");
+            expect(new RESTError(404, "Not Found", "Look harder").message).toStrictEqual("404 Not Found: Look harder");
         });
     });
 });
