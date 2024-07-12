@@ -18,14 +18,14 @@
  */
 
 import { describe, expect, it, jest } from "@jest/globals";
-import { FetchFunction, fulfill, SereneAuthority, SereneRequest, SereneRequestParseOptions, SereneRequestPrepareOptions } from "../lib";
+import { FetchFunction, fulfill, SereneAuthority, SereneAuthorityAuthenticateOptions, SereneRequest, SereneRequestParseOptions, SereneRequestPrepareOptions } from "../lib";
 
 describe("fulfill module", () => {
     describe("#fulfill", () => {
         it("should refresh authority if invalid", async () => {
             let isValid = false;
             const refresh = jest.fn(async () => { isValid = true });
-            const authenticate = jest.fn(async () => { });
+            const authenticate = jest.fn(async ( { fetchRequest }: SereneAuthorityAuthenticateOptions) => fetchRequest);
             const authority: SereneAuthority = {
                 retryLimit: 1,
                 get isValid(): boolean {
@@ -45,7 +45,7 @@ describe("fulfill module", () => {
 
         it("should refresh authority if 401 is returned", async () => {
             const refresh = jest.fn(async () => { });
-            const authenticate = jest.fn(async () => { });
+            const authenticate = jest.fn(async ( { fetchRequest }: SereneAuthorityAuthenticateOptions) => fetchRequest);
             const authority: SereneAuthority = {
                 retryLimit: 1,
                 isValid: true,
@@ -70,7 +70,7 @@ describe("fulfill module", () => {
 
         it("should throw an error if all retries are exhausted", () => {
             const refresh = jest.fn(async () => { });
-            const authenticate = jest.fn(async () => { });
+            const authenticate = jest.fn(async ( { fetchRequest }: SereneAuthorityAuthenticateOptions) => fetchRequest);
             const authority: SereneAuthority = {
                 retryLimit: 1,
                 isValid: false,

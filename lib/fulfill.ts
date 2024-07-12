@@ -68,9 +68,9 @@ export async function fulfill<A extends SereneAuthority, R>({
         await authority.refresh({ fetch });
     }
     for (let retry = 0, retryLimit = authority.retryLimit; retry <= retryLimit; retry++) {
-        const fetchRequest = request.prepare({ authority });
-        logger({ event: "willAuthenticate", authority, fetchRequest });
-        authority.authenticate({ fetchRequest });
+        const unauthenticatedFetchRequest = request.prepare({ authority });
+        logger({ event: "willAuthenticate", authority, fetchRequest: unauthenticatedFetchRequest });
+        const fetchRequest = await authority.authenticate({ fetchRequest: unauthenticatedFetchRequest });
         logger({ event: "willFetch", fetchRequest });
         const fetchResponse = await fetch(fetchRequest);
         if (!fetchResponse.ok && fetchResponse.status === 401) {

@@ -72,10 +72,11 @@ export interface SereneAuthority {
      * 
      * @param options The options the authority should use when authenticating 
      * a network request, including the request itself.
+     * @returns An updated request object.
      * @throws A `SereneAuthorityError` or `Error`-derivative if the network 
      * cannot be authenticated, such as when the authority is not valid.
      */
-    authenticate(options: SereneAuthorityAuthenticateOptions): Promise<void>;
+    authenticate(options: SereneAuthorityAuthenticateOptions): Promise<Request>;
 }
 
 /**
@@ -93,11 +94,11 @@ export class NoAuthority implements SereneAuthority {
         return true;
     }
 
-    async refresh(options: SereneAuthorityRefreshOptions): Promise<void> {
+    async refresh(_options: SereneAuthorityRefreshOptions): Promise<void> {
         /* do nothing */
     }
 
-    async authenticate(_options: SereneAuthorityAuthenticateOptions): Promise<void> {
-        /* do nothing */
+    async authenticate({ fetchRequest }: SereneAuthorityAuthenticateOptions): Promise<Request> {
+        return fetchRequest;
     }
 }
