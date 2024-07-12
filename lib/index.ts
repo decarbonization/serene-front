@@ -17,8 +17,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+export * from "./authority";
 export * from "./error";
 export * from "./fetch";
 export * from "./fulfill";
+export * from "./logger";
 export * from "./request";
-export * from "./authority";
+

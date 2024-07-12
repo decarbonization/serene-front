@@ -3,14 +3,16 @@
   "type": "commonjs",
   "version": "0.0.1",
   "description": "Glue together JavaScript RESTful API clients",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/lib/index.d.ts",
-      "default": "./dist/lib/index.js"
+      "require": "./dist/lib/index.js"
     },
     "./models": {
       "types": "./dist/lib/models/index.d.ts",
-      "default": "./dist/lib/models/index.js"
+      "require": "./dist/lib/models/index.js"
     }
   },
   "files": [
