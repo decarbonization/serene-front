@@ -33,7 +33,7 @@ export interface SereneAuthorityRefreshOptions {
 /**
  * The options passed to a `SereneAuthority` object's `authenticate` method.
  */
-export interface FetchAuthorityAuthenticateOptions {
+export interface SereneAuthorityAuthenticateOptions {
     /**
      * The soon-to-be outgoing network operation to communicate with  
      * a service that must be authenticated by an authority first.
@@ -75,7 +75,7 @@ export interface SereneAuthority {
      * @throws A `SereneAuthorityError` or `Error`-derivative if the network 
      * cannot be authenticated, such as when the authority is not valid.
      */
-    authenticate(options: FetchAuthorityAuthenticateOptions): Promise<void>;
+    authenticate(options: SereneAuthorityAuthenticateOptions): Promise<void>;
 }
 
 /**
@@ -97,7 +97,7 @@ export class NoAuthority implements SereneAuthority {
         /* do nothing */
     }
 
-    async authenticate(_options: FetchAuthorityAuthenticateOptions): Promise<void> {
+    async authenticate(_options: SereneAuthorityAuthenticateOptions): Promise<void> {
         /* do nothing */
     }
 }
