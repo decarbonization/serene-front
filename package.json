@@ -13,14 +13,18 @@
     "./models": {
       "types": "./dist/lib/models/index.d.ts",
       "default": "./dist/lib/models/index.js"
+    },
+    "./urls": {
+      "types": "./dist/lib/urls/index.d.ts",
+      "default": "./dist/lib/urls/index.js"
     }
   },
   "files": [
     "dist/lib"
   ],
   "scripts": {
-    "clean": "npx rimraf dist",
     "prepare": "npm run clean && npm run build",
+    "clean": "npx rimraf dist",
     "build": "npx tsc",
     "test": "npx jest"
   },
