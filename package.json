@@ -10,9 +10,9 @@
       "types": "./dist/lib/index.d.ts",
       "default": "./dist/lib/index.js"
     },
-    "./models": {
-      "types": "./dist/lib/models/index.d.ts",
-      "default": "./dist/lib/models/index.js"
+    "./data": {
+      "types": "./dist/lib/data/index.d.ts",
+      "default": "./dist/lib/data/index.js"
     },
     "./urls": {
       "types": "./dist/lib/urls/index.d.ts",
