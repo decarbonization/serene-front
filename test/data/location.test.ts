@@ -22,6 +22,24 @@ import { LocationCoordinates } from "../../lib/data";
 
 describe("data#location module", () => {
     describe("#LocationCoordinates", () => {
+        describe("#parseCoordinate", () => {
+            it("should reject non-numeric strings", () => {
+                expect(() => LocationCoordinates.parseCoordinate("x")).toThrow();
+                expect(() => LocationCoordinates.parseCoordinate("twenty two")).toThrow();
+            });
+
+            it("should reject non-finite numbers", () => {
+                expect(() => LocationCoordinates.parseCoordinate("NaN")).toThrow();
+                expect(() => LocationCoordinates.parseCoordinate("inf")).toThrow();
+            });
+
+            it("should accept numbers", () => {
+                expect(LocationCoordinates.parseCoordinate("-1")).toStrictEqual(-1);
+                expect(LocationCoordinates.parseCoordinate("0")).toStrictEqual(0);
+                expect(LocationCoordinates.parseCoordinate("1")).toStrictEqual(1);
+            });
+        });
+
         describe("#revive", () => {
             it("should propagate values", () => {
                 const subject = LocationCoordinates.revive({

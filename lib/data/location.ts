@@ -27,6 +27,22 @@ const earthRadiusKm: number = 6_371;
  */
 export class LocationCoordinates {
     /**
+     * Convert a string containing a geographic coordinate into a number.
+     * 
+     * @throws `TypeError` if `subject` is not a valid finite number.
+     * @param subject A string containing a geographic coordinate.
+     * @returns A numeric geographic coordinate.
+     */
+    static parseCoordinate(subject: string): number {
+        const coordinate = parseFloat(subject);
+        if (!Number.isFinite(coordinate)) {
+            throw new TypeError(`<${subject}> is not a valid coordinate`);
+        }
+        return coordinate;
+    }
+
+
+    /**
      * Create a new location coordinates object from a given JSON representation.
      * 
      * @param raw A JSON representation of location coordinates.
