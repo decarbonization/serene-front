@@ -17,4 +17,6 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+export * from "./headers";
 export * from "./search-params";
+
