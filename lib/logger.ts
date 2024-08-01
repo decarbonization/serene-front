@@ -39,3 +39,25 @@ export type SereneLogger = (event: SereneLogEvent) => void;
  * A logger which does nothing.
  */
 export const noLogger: SereneLogger = (_event: SereneLogEvent) => { /* do nothing */ };
+
+/**
+ * A logger which prints `SereneLogEvent`s to the console as errors.
+ * 
+ * __Important__: This logger does not redact sensitive information.
+ */
+export const verboseConsoleLogger: SereneLogger = (event: SereneLogEvent) => {
+    switch (event.event) {
+        case "willAuthenticate":
+            console.error(`+ fulfill:willAuthenticate <${event.fetchRequest.url}> using ${event.authority}`);
+            break;
+        case "willRefreshAuthority":
+            console.error(`+ fulfill:willRefreshAuthority ${event.authority}`);
+            break;
+        case "willFetch":
+            console.error(`+ fulfill:willFetch ${event.fetchRequest.method} <${event.fetchRequest.url}>`);
+            break;
+        case "willParse":
+            console.error(`+ fulfill:willParse ${event.fetchResponse.status} ${event.fetchResponse.statusText}`);
+            break;
+    }
+};

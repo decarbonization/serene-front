@@ -64,18 +64,18 @@ describe("data#location module", () => {
             });
         });
 
-        describe("#truncate", () => {
+        describe("#truncatedTo", () => {
             it("should reduce the accuracy of geographic coordinates", () => {
                 const subject = new LocationCoordinates(35.689506, 139.6917);
-                expect(subject.truncate(1)).toEqual({
+                expect(subject.truncatedTo(1)).toEqual({
                     latitude: 35.6,
                     longitude: 139.6,
                 });
-                expect(subject.truncate(2)).toEqual({
+                expect(subject.truncatedTo(2)).toEqual({
                     latitude: 35.68,
                     longitude: 139.69,
                 });
-                expect(subject.truncate(4)).toEqual({
+                expect(subject.truncatedTo(4)).toEqual({
                     latitude: 35.6895,
                     longitude: 139.6917,
                 });

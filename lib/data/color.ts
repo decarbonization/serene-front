@@ -18,6 +18,15 @@
  */
 
 /**
+ * A tuple containing the red, green, and blue components of a `Color` object.
+ */
+type ColorComponentTriplet = [
+    number,
+    number,
+    number,
+];
+
+/**
  * Represents a color in the RGBA color space.
  */
 export class Color {
@@ -55,13 +64,29 @@ export class Color {
     ) { }
 
     /**
+     * The components of this color object, scaled to the color space of CSS and HTML.
+     */
+    private get rgbComponents(): ColorComponentTriplet {
+        const components: ColorComponentTriplet = [
+            this.red,
+            this.green,
+            this.blue,
+        ];
+        for (let i = 0, length = components.length; i < length; i++) {
+            components[i] = Math.round(components[i] * 255);
+        }
+        return components;
+    }
+
+    /**
      * The CSS representation of this color.
      */
     get cssColor(): string {
+        const [red, green, blue] = this.rgbComponents;
         if (this.alpha === 1) {
-            return `rgb(${Math.round(this.red * 255)}, ${Math.round(this.green * 255)}, ${Math.round(this.blue * 255)})`;
+            return `rgb(${red}, ${green}, ${blue})`;
         } else {
-            return `rgba(${Math.round(this.red * 255)}, ${Math.round(this.green * 255)}, ${Math.round(this.blue * 255)}, ${this.alpha})`;
+            return `rgba(${red}, ${green}, ${blue}, ${this.alpha})`;
 
         }
     }

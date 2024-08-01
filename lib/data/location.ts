@@ -83,7 +83,7 @@ export class LocationCoordinates {
      * of the decimal point to retain on the latitude and longitude. 
      * @returns New geographic coordinates.
      */
-    truncate(precision: number): LocationCoordinates {
+    truncatedTo(precision: number): LocationCoordinates {
         const scale = Math.pow(10, precision);
         return new LocationCoordinates(
             (Math.floor(this.latitude * scale) / scale),
