@@ -10,6 +10,10 @@
       "types": "./dist/lib/index.d.ts",
       "default": "./dist/lib/index.js"
     },
+    "./collections": {
+      "types": "./dist/lib/collections/index.d.ts",
+      "default": "./dist/lib/collections/index.js"
+    },
     "./data": {
       "types": "./dist/lib/data/index.d.ts",
       "default": "./dist/lib/data/index.js"
